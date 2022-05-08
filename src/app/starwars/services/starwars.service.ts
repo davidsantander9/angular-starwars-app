@@ -24,8 +24,8 @@ export class StarwarsService {
     return this.http.get<Movie>(`${ this.baseUrl }/films/${id}`);
   }
 
-  getMovies(): Observable<Movie> {
-    return this.http.get<Movie>(`${ this.baseUrl }/films`);
+  getMovies(): Observable<StarwarsResponse<Movie>> {
+    return this.http.get<StarwarsResponse<Movie>>(`${ this.baseUrl }/films`);
   }
 
 }

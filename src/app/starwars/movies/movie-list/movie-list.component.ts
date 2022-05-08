@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StarwarsResponse, Movie } from '../../interfaces/starwars.interfaces';
+import { StarwarsService } from '../../services/starwars.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -8,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieListComponent implements OnInit {
 
-  constructor() { }
+  movies: Movie[] = [];
+  isLoading: boolean = true;
+
+  constructor( private starwarsService: StarwarsService) { }
 
   ngOnInit(): void {
+    this.starwarsService.getMovies()
+      .subscribe( (resp: StarwarsResponse<Movie>) => { 
+        this.movies = resp.results;
+        this.isLoading = false;
+      });
   }
 
 }
