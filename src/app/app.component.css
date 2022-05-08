@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "JediFont";
+  src: local("JediFont"), url(../assets/font/Starjhol.ttf) format("truetype");
+}
+
+.jedyFont{
+  font-family: "JediFont", Arial, Helvetica, sans-serif;
+}

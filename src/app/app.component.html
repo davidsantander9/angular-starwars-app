@@ -1,4 +1,4 @@
-<div class="bg-black w-screen h-screen">
+<div class="bg-black w-screen h-screen flex flex-col">
   <nav class="bg-black">
       <div class="container px-6 py-4 mx-auto flex">
           <div class="flex items-center justify-between">
@@ -9,26 +9,21 @@
               </div>
           </div>
           <div class="items-center grow text-center text-4xl my-auto">
-              <h1 class="text-white">{{ title | titlecase }}</h1>
+              <h1 class="text-white jedyFont">{{ title | titlecase }}</h1>
           </div>
       </div>
   </nav>
 
   <nav class="shadow bg-gray-900">
-    <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300">
-        <a href="#" class="text-gray-800 transition-colors duration-200 transform dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6">home</a>
-        <a href="#" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Section title</a>
+    <div class="container flex items-center justify-center p-6 mx-auto text-gray-600 capitalize dark:text-gray-300 ">
+        <a href="#" class="text-gray-500 transition-colors duration-200 transform dark:text-gray-200 border-b-2 border-yellow-500 mx-1.5 sm:mx-6">home</a>
+        <a href="#" class="border-b-2 border-transparent hover:text-gray-600 transition-colors duration-200 transform hover:border-blue-500 mx-1.5 sm:mx-6">Movies</a>
+        <a href="#" class="border-b-2 border-transparent hover:text-gray-600 transition-colors duration-200 transform hover:border-blue-500 mx-1.5 sm:mx-6">Starships</a>
     </div>
 </nav>
 
-<section class="bg-black">
-  <div class="container px-6 py-8 mx-auto">
-      <div class="lg:flex lg:-mx-2">
-          <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 text-white">
-            <router-outlet></router-outlet>
-          </div>
-      </div>
-  </div>
+<section class="bg-black grow text-white">
+    <router-outlet></router-outlet>
 </section>
 
 </div>

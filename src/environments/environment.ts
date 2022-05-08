@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseStarWarsUrl: "https://swapi.dev/api",
+  baseHerokuStarWarsUrl: "https://starwars-app-dev.herokuapp.com/api/v1/",
 };
 
 /*
