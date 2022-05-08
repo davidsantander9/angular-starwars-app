@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MovieComponent } from './movies/movie/movie.component';
-import { MovieListComponent } from './movies/movie-list/movie-list.component';
-import { StarshipComponent } from './starship/starship/starship.component';
-import { StarshipListComponent } from './starship/starship-list/starship-list.component';
 
+import { StarwarsRoutingModule } from './starwars-routing.module';
+import { HomeComponent } from './pages/home/home.component';
+import { MoviesComponent } from './pages/movies/movies.component';
 
 
 @NgModule({
   declarations: [
-    MovieComponent,
-    MovieListComponent,
-    StarshipComponent,
-    StarshipListComponent
+    HomeComponent,
+    MoviesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    StarwarsRoutingModule
   ]
 })
 export class StarwarsModule { }
