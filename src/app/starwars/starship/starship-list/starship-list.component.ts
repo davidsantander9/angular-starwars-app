@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-starship-list',
+  templateUrl: './starship-list.component.html',
+  styles: [
+  ]
+})
+export class StarshipListComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
