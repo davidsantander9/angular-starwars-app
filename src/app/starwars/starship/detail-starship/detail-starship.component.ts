@@ -106,7 +106,7 @@ export class DetailStarshipComponent implements OnInit {
       created: this.starship.created,
       edited: this.starship.edited,
       url: this.starship.url,
-    })
+    });
     
   }
 
@@ -120,9 +120,12 @@ export class DetailStarshipComponent implements OnInit {
     //   this.form.markAllAsTouched();
     //   return;
     // }
-
-    console.log(this.form.value);
-    this.starshipService.createStarship(this.form.value).subscribe( starship => console.log(starship) );
+    if ( this.myStarship ){
+      this.starshipService.updateStarship(this.form.value, this.myStarship.id).subscribe( starship => console.log(starship) );
+    }else{
+      this.starshipService.createStarship(this.form.value).subscribe( starship => console.log(starship) );
+    }
+    
     this.starshipService.getStarshipByIdApi(this.id.toString()).subscribe( result => { 
       if( result.length > 0) { this.myStarship = result[0] } 
       this.isLoading = false;
@@ -135,6 +138,30 @@ export class DetailStarshipComponent implements OnInit {
       this.starshipService.deleteStarship(this.myStarship.id)
       .subscribe( resp => console.log(resp) );
     }
+  }
+
+  setData(){
+    this.form.reset({
+      id_api: this.myStarship.id_api,
+      name: this.myStarship.name,
+      model: this.myStarship.model,
+      manufacturer: this.myStarship.manufacturer,
+      hyperdrive_rating: this.myStarship.hyperdrive_rating,
+      cost_in_credits: this.myStarship.cost_in_credits,
+      passengers: this.myStarship.passengers,
+      length: this.myStarship.length,
+      cargo_capacity: this.myStarship.cargo_capacity,
+      max_atmosphering_speed: this.myStarship.max_atmosphering_speed,
+      crew: this.myStarship.crew,
+      passegers: this.myStarship.cargo_capacity,
+      consumables: this.myStarship.consumables,
+      Hyperdrive_rating: this.myStarship.hyperdrive_rating,
+      MGLT: this.myStarship.MGLT,
+      starship_class: this.myStarship.url,
+      created: this.myStarship.created,
+      edited: this.myStarship.edited,
+      url: this.myStarship.url,
+    });
   }
 
 }
