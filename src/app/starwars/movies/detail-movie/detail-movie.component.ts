@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { Movie } from '../../interfaces/starwars.interfaces';
 import { StarwarsService } from '../../services/starwars.service';
@@ -22,6 +22,7 @@ export class DetailMovieComponent implements OnInit {
     private starwarsService: StarwarsService,
     private activatedRoute: ActivatedRoute,
     private stateService: StateService,
+    private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -33,10 +34,18 @@ export class DetailMovieComponent implements OnInit {
           .pipe(
             switchMap( ({ id }) => this.starwarsService.getMovieById(id) )
           )
-          .subscribe( movie => {
-            this.movie = movie
-            this.isLoading = false;
-          } );
+          .subscribe( 
+            movie => {
+              this.movie = movie
+              this.isLoading = false;
+            },
+            err => {
+              this.isLoading = false;
+              if (err.status === 404 ){
+                this.router.navigate(['/starwars/home']);
+              }
+            } 
+          );
       }
     }
 }
