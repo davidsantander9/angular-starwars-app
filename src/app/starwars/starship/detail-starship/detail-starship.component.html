@@ -224,7 +224,9 @@
           </div>
     
           <div class="flex justify-end mt-6">
-              <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+              <button 
+                [disabled]="form.invalid"
+                class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
                 {{ myStarship ? 'Updated' : 'Save' }}
               </button>
           </div>
@@ -295,9 +297,11 @@
       <div class="flex justify-end mt-6 space-x-4">
         <button 
           (click)="delete()"
+          [disabled]="myStarship === undefined"
           class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Delete</button>
         <button 
           (click)="setData()"
+          [disabled]="myStarship === undefined"
         class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600" >Set data</button>
       </div>
     </section>
