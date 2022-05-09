@@ -12,6 +12,8 @@ import { StateService } from '../../services/state.service';
 export class StarshipItemComponent implements OnInit {
 
   @Input() url: string = "";
+
+  isLoading: boolean = true;
   
   startship: Starship = {
     name: '',
@@ -48,6 +50,7 @@ export class StarshipItemComponent implements OnInit {
         .subscribe( starship => { 
           this.startship = starship;
           this.idStarship = starship.url.split("/")[5];
+          this.isLoading = false;
         })
   }
 

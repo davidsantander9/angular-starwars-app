@@ -18,6 +18,7 @@ export class DetailStarshipComponent implements OnInit {
   idApi: number | undefined;
   myStarship!: myStarship;
   isLoading: boolean = true;
+  errorText: string = "";
   
   starship: Starship = {
     name: '',
@@ -46,18 +47,17 @@ export class DetailStarshipComponent implements OnInit {
     model: [ , [ Validators.required, Validators.minLength(3) ]   ],
     manufacturer: [ , [ Validators.required, Validators.minLength(3) ]   ],
     max_atmosphering_speed: [ , [ Validators.required, Validators.minLength(3) ]   ],
-    cost_in_credits: [ , [ Validators.required, Validators.minLength(3) ]   ],
+    cost_in_credits: [ , [ Validators.required, Validators.minLength(1) ]   ],
     length: [ , [ Validators.required, Validators.minLength(1) ]   ],
     crew: [ , [ Validators.required, Validators.minLength(1) ]   ],
     passengers: [ , [ Validators.required, Validators.minLength(1) ]   ],
     cargo_capacity: [ , [ Validators.required, Validators.minLength(1) ]   ],
-    consumables: [ , [ Validators.required, Validators.minLength(1) ]   ],
     hyperdrive_rating: [ , [ Validators.required, Validators.minLength(1) ]   ],
     MGLT: [ , [ Validators.required, Validators.minLength(1)] ],
     starship_class: [ , [ Validators.required, Validators.minLength(1)] ],
-    created: [ , [ Validators.required, Validators.minLength(1)] ],
-    edited: [ , [ Validators.required, Validators.minLength(1)] ],
-    url: [ , [ Validators.required, Validators.minLength(1)] ],
+    created: [ , [ Validators.required, Validators.minLength(10)] ],
+    edited: [ , [ Validators.required, Validators.minLength(10)] ],
+    url: [ , [ Validators.required, Validators.minLength(10)] ],
   }) 
 
   constructor(
@@ -80,11 +80,16 @@ export class DetailStarshipComponent implements OnInit {
             return this.starshipService.getStarshipByIdApi(id)
           } )
         )
-        .subscribe( result => { 
-          if( result.length > 0) { this.myStarship = result[0] } 
-          console.log(this.myStarship)
-          this.isLoading = false;
-      } );
+        .subscribe( 
+           result => { 
+              if( result.length > 0) { this.myStarship = result[0] } 
+              this.isLoading = false;
+          },
+          err => {
+            this.isLoading = false;
+            this.errorText = err.statusText;
+          }
+        );
 
     this.form.reset({
       id_api: this.id,
@@ -100,7 +105,6 @@ export class DetailStarshipComponent implements OnInit {
       crew: this.starship.crew,
       passegers: this.starship.cargo_capacity,
       consumables: this.starship.consumables,
-      Hyperdrive_rating: this.starship.hyperdrive_rating,
       MGLT: this.starship.MGLT,
       starship_class: this.starship.url,
       created: this.starship.created,
@@ -116,14 +120,38 @@ export class DetailStarshipComponent implements OnInit {
   }
 
   save(){
-    // if ( this.form.invalid )  {
-    //   this.form.markAllAsTouched();
-    //   return;
-    // }
+    if ( this.form.invalid )  {
+      this.form.markAllAsTouched();
+      console.log(this.form.validator)
+      console.log(this.form.errors)
+      return;
+    }
+    this.isLoading = true;
     if ( this.myStarship ){
-      this.starshipService.updateStarship(this.form.value, this.myStarship.id).subscribe( starship => console.log(starship) );
+      this.starshipService.updateStarship(this.form.value, this.myStarship.id)
+      .subscribe( 
+        result => { 
+          this.isLoading = false;
+          this.errorText = "";
+        },
+        err => {
+          this.isLoading = false;
+          this.errorText = err.statusText;
+          this.errorText = err.statusText +  " " +err.error.manufacturer.join(" ");
+        }
+       );
     }else{
-      this.starshipService.createStarship(this.form.value).subscribe( starship => console.log(starship) );
+        this.starshipService.createStarship(this.form.value)
+        .subscribe( 
+          result => { 
+            this.isLoading = false;
+            this.errorText = "";
+          },
+          err => {
+            this.isLoading = false;
+            this.errorText = err?.statusText +  " " +err?.error?.manufacturer.join(" ");
+          }
+         );
     }
     
     this.starshipService.getStarshipByIdApi(this.id.toString()).subscribe( result => { 
@@ -135,8 +163,18 @@ export class DetailStarshipComponent implements OnInit {
 
   delete(){
     if (this.myStarship) {
+      this.isLoading = true;
       this.starshipService.deleteStarship(this.myStarship.id)
-      .subscribe( resp => console.log(resp) );
+      .subscribe( 
+        result => { 
+          this.isLoading = false;
+          this.errorText = "";
+        },
+        err => {
+          this.isLoading = false;
+          this.errorText = err?.statusText +  " " +err?.error?.manufacturer.join(" ");
+        }
+      );
     }
   }
 
