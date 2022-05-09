@@ -1,6 +1,9 @@
 <div *ngIf="isLoading; else elseBlock">
   <app-loading></app-loading>
 </div>
+<div class="bg-red-600 px-10"  *ngIf="errorText.length > 0">
+  <p>{{errorText}}</p>
+</div>
 <ng-template #elseBlock>
   <div class="grid grid-cols-3 gap-4 w-full px-10 pb-5">
     <div *ngIf="isLoading" >

@@ -1,8 +1,10 @@
 <div *ngIf="isLoading; else elseBlock">
   <app-loading></app-loading>
 </div>
+<div class="bg-red-600 px-10"  *ngIf="errorText.length > 0">
+  <p>{{errorText}}</p>
+</div>
 <ng-template #elseBlock>
-
 <div class="flex flex-row rounded my-4">
   <div class="w-full px-6 flex space-x-4">
     <section class="p-6 w-3/4 mx-auto bg-gray-900 rounded-md shadow-md">
@@ -225,9 +227,6 @@
               <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
                 {{ myStarship ? 'Updated' : 'Save' }}
               </button>
-          </div>
-          <div class="bg-red-600 mx-2 w-1/2 p-3 rounded" *ngIf="errorText.length > 0">
-              {{errorText}}
           </div>
       </form>
     </section>

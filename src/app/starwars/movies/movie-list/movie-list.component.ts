@@ -12,6 +12,7 @@ export class MovieListComponent implements OnInit {
 
   movies: Movie[] = [];
   isLoading: boolean = true;
+  errorText: string = "";
 
   constructor( 
     private starwarsService: StarwarsService,
@@ -20,10 +21,16 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
     this.starwarsService.getMovies()
-      .subscribe( (resp: StarwarsResponse<Movie>) => { 
-        this.movies = resp.results;
-        this.isLoading = false;
-      });
+      .subscribe( 
+        (resp: StarwarsResponse<Movie>) => { 
+          this.movies = resp.results;
+          this.isLoading = false;
+        },
+        err => {
+          this.isLoading = false;
+          this.errorText = err.statusText;
+        }
+        );
   }
 
 }
