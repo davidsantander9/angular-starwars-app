@@ -15,8 +15,9 @@ import { StateService } from '../../services/state.service';
 export class DetailStarshipComponent implements OnInit {
 
   id: number = 0;
-
+  idApi: number | undefined;
   myStarship!: myStarship;
+  isLoading: boolean = true;
   
   starship: Starship = {
     name: '',
@@ -72,8 +73,6 @@ export class DetailStarshipComponent implements OnInit {
     if ( this.stateService.getCurrentStarship() ){
       this.starship = this.stateService.getCurrentStarship();
     }
-    console.log(this.starship);
-
     this.activatedRoute.params
         .pipe(
           switchMap( ({ id }) => {
@@ -81,7 +80,11 @@ export class DetailStarshipComponent implements OnInit {
             return this.starshipService.getStarshipByIdApi(id)
           } )
         )
-        .subscribe( result => { if( result.length > 0) this.myStarship = result[0] } );
+        .subscribe( result => { 
+          if( result.length > 0) { this.myStarship = result[0] } 
+          console.log(this.myStarship)
+          this.isLoading = false;
+      } );
 
     this.form.reset({
       id_api: this.id,
@@ -120,7 +123,18 @@ export class DetailStarshipComponent implements OnInit {
 
     console.log(this.form.value);
     this.starshipService.createStarship(this.form.value).subscribe( starship => console.log(starship) );
+    this.starshipService.getStarshipByIdApi(this.id.toString()).subscribe( result => { 
+      if( result.length > 0) { this.myStarship = result[0] } 
+      this.isLoading = false;
+    } );
     this.form.reset();
+  }
+
+  delete(){
+    if (this.myStarship) {
+      this.starshipService.deleteStarship(this.myStarship.id)
+      .subscribe( resp => console.log(resp) );
+    }
   }
 
 }

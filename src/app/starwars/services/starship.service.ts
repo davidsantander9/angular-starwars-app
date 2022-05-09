@@ -21,4 +21,8 @@ export class StarshipService {
     return this.http.post<myStarship>(`${ this.baseUrl }/starships/`, starship);
   }
 
+  deleteStarship(id: number): Observable<any>{
+    return this.http.delete<any>(`${ this.baseUrl }/starships/${id}/`);
+  }
+
 }
