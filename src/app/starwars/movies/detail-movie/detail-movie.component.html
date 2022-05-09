@@ -3,24 +3,24 @@
 </div>
 <ng-template #elseBlock>
   <section>
-    <div class="container px-6 py-10 mx-auto bg-gray-900 rounded mt-4">
+    <div class="container px-6 py-10 mx-auto bg-gray-900 rounded my-4">
         <div class="xl:flex xl:items-center xL:-mx-4">
-          <div class="xl:w-1/2 xl:mx-4 flex flex-col shadow-2xl rounded-lg bg-black p-6">
-              <div class="flex items-center">
+          <div class="xl:w-1/2 xl:mx-4 flex flex-col shadow-2xl rounded-lg bg-black p-6 self-start">
+              <div class="flex items-center ">
                 <img class="object-cover rounded-xl aspect-square w-48" src="https://www.solofondos.com/wp-content/uploads/2016/07/star-wars-768x432.jpg">
                 <div class="w-full px-4">
-                  <h1 class="text-3xl font-semibold text-gray-400 capitalize lg:text-4xl text-center">Episode {{movie.episode_id}}</h1>
-                  <h2 class="text-3xl font-semibold text-gray-400 capitalize lg:text-3xl text-center">{{movie.title}}</h2>
-                  <p class="mt-4 text-gray-500 text-left"><span class="font-bold">Director: </span> {{movie.director}}</p>
-                  <p class="mt-4 text-gray-500 text-left"><span class="font-bold">Producer: </span> {{movie.producer}}</p>
-                  <p class="mt-4 text-gray-500 text-left"><span class="font-bold">Release date: </span> {{movie.release_date}}</p>
+                  <h1 class="text-3xl font-semibold text-gray-400 capitalize lg:text-4xl text-center jedyFont">Episode {{movie!.episode_id}}</h1>
+                  <h2 class="text-3xl font-semibold text-gray-400 capitalize lg:text-3xl text-center">{{movie!.title}}</h2>
+                  <p class="mt-4 text-gray-500 text-left"><span class="font-bold">Director: </span> {{movie!.director}}</p>
+                  <p class="mt-4 text-gray-500 text-left"><span class="font-bold">Producer: </span> {{movie!.producer}}</p>
+                  <p class="mt-4 text-gray-500 text-left"><span class="font-bold">Release date: </span> {{movie!.release_date}}</p>
                 </div>
               </div>
-              <p class="mt-4 text-gray-500 dark:text-gray-300 text-justify"> <span class="font-bold">Opening Crawl: </span> {{movie.opening_crawl}}</p>
+              <p class="mt-4 text-gray-500 dark:text-gray-300 text-justify"> <span class="font-bold">Opening Crawl: </span> {{movie!.opening_crawl}}</p>
             </div>
             
             <div class="w-1/2">
-              <app-starship-list [starships]="movie.starships"></app-starship-list>
+              <app-starship-list [starships]="movie!.starships"></app-starship-list>
             </div>
         </div>
     </div>

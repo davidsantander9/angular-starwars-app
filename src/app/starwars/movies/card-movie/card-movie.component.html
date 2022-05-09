@@ -7,10 +7,7 @@
   <p class="mt-2 text-gray-200">{{movie.opening_crawl}}</p>
   
   <div class="flex justify-end mt-4">
-      <button 
-        class="text-xl font-medium text-blue-500 dark:text-blue-300 bg-blue"
-        [routerLink]="['/starwars/movie', movie.episode_id]"
-        >
+      <button class="text-xl font-medium text-blue-500 dark:text-blue-300 bg-blue" (click)="goToDetailMovie()">
         View detail
       </button>
   </div>

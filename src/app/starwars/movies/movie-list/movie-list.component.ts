@@ -13,7 +13,10 @@ export class MovieListComponent implements OnInit {
   movies: Movie[] = [];
   isLoading: boolean = true;
 
-  constructor( private starwarsService: StarwarsService) { }
+  constructor( 
+    private starwarsService: StarwarsService,
+    private stateService: StarwarsService,
+    ) { }
 
   ngOnInit(): void {
     this.starwarsService.getMovies()

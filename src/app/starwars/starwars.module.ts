@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { StarwarsRoutingModule } from './starwars-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -10,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DetailMovieComponent } from './movies/detail-movie/detail-movie.component';
 import { StarshipItemComponent } from './starship/starship-item/starship-item.component';
 import { StarshipListComponent } from './starship/starship-list/starship-list.component';
+import { DetailStarshipComponent } from './starship/detail-starship/detail-starship.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,13 @@ import { StarshipListComponent } from './starship/starship-list/starship-list.co
     DetailMovieComponent,
     StarshipItemComponent,
     StarshipListComponent,
+    DetailStarshipComponent,
   ],
   imports: [
     CommonModule,
     StarwarsRoutingModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class StarwarsModule { }

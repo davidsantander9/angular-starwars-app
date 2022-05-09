@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from '../../interfaces/starwars.interfaces';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-card-movie',
@@ -7,7 +9,7 @@ import { Movie } from '../../interfaces/starwars.interfaces';
   styles: [
   ]
 })
-export class CardMovieComponent implements OnInit {
+export class CardMovieComponent {
 
   @Input() movie: Movie = {
     title: '',
@@ -26,9 +28,15 @@ export class CardMovieComponent implements OnInit {
     url: ''
   }
 
-  constructor() { }
+  constructor(
+    private stateService: StateService,
+    private router: Router
+    ) { }
 
-  ngOnInit(): void {
-  }
+  goToDetailMovie(): void {
+    this.stateService.setCurrentMovie(this.movie);
+    this.router.navigate(['/starwars/movie', this.movie.episode_id]);
+}
 
 }
+

@@ -21,6 +21,7 @@ export class StarwarsService {
   }
 
   getMovieById( id: string ): Observable<Movie> {
+    console.log(`${ this.baseUrl }/films/${id}`);
     return this.http.get<Movie>(`${ this.baseUrl }/films/${id}`);
   }
 

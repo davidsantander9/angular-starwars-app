@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseStarWarsUrl: "https://swapi.dev/api",
-  baseHerokuStarWarsUrl: "https://starwars-app-dev.herokuapp.com/api/v1/",
+  baseHerokuStarWarsUrl: "https://starwars-app-dev.herokuapp.com/api/v1",
 };
 
 /*
