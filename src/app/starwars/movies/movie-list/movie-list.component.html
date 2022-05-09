@@ -1,11 +1,16 @@
-<div class="grid grid-cols-3 gap-4 w-full">
-  <div *ngIf="isLoading" >
-      Loading...
-  </div>
-  <div 
-    class="flex-none space-x-0.5"
-    *ngFor="let movie of movies"  
-  >
-    <app-card-movie></app-card-movie>
-  </div>
+<div *ngIf="isLoading; else elseBlock">
+  <app-loading></app-loading>
 </div>
+<ng-template #elseBlock>
+  <div class="grid grid-cols-3 gap-4 w-full px-10 pb-5">
+    <div *ngIf="isLoading" >
+        Loading...
+    </div>
+    <div 
+      class="flex-none space-x-0.5"
+      *ngFor="let movie of movies"  
+    >
+      <app-card-movie [movie]="movie"></app-card-movie>
+    </div>
+  </div>
+</ng-template> 

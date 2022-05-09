@@ -1,1 +1,8 @@
-<p>starship-list works!</p>
+<div class="text-center uppercase text-2xl mb-4">
+  <h2>starships</h2>
+</div>
+<div class="flex flex-col space-y-3">
+  <div *ngFor="let starship of starships">
+    <app-starship-item [url]="starship"></app-starship-item>
+  </div>
+</div>
