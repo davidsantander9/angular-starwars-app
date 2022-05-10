@@ -1,58 +1,53 @@
 import { Injectable } from '@angular/core';
 import { Movie, Starship } from '../interfaces/starwars.interfaces';
 
+/**
+ * Description: 
+ *  - Control app state
+ */
+
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
 
-  private _movies: Movie[] = [];
+  /** _currentMovie: movie selected */
   private _currentMovie!: Movie;
-  private _starships: Starship[] = []
+  /** _currentStarship: starship selected */
   private _currentStarship!: Starship;
 
   constructor() { }
 
-  get movies(): Movie[]{
-    return [...this._movies];
-  }
-
-  setMovies(movies: Movie[]){
-    this._movies = movies;
-  }
-
-  get starships(): Starship[]{
-    return [...this._starships];
-  }
-
-  setStarships(starships: Starship[]){
-    this._starships = starships;
-  }
-
+  /**
+   * get an starship
+   * @returns selected starship
+   */
   getCurrentStarship(): Starship{
     return this._currentStarship;
   }
 
+  /**
+   * select currentStarship
+   * @param starship starship info
+   */
   setCurrentStarship(starship: Starship){
     this._currentStarship = starship;
   }
 
+  /**
+   * select current ifno
+   * @param movie movie info
+   */
   setCurrentMovie(movie: Movie){
     this._currentMovie = movie ;
   }
 
+  /**
+   * get a movie
+   * @returns selected movie
+   */
   getCurrentMovie(): Movie{
     return this._currentMovie;
-  }
-
-  
-
-  findMovie(id: number): Movie | undefined{
-    return this._movies.find( movie => movie.episode_id === id );
-  }
-
-  findStarship(model: string): Starship | undefined{
-    return this.starships.find( starship => starship.model === model );
   }
 
 

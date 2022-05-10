@@ -35,7 +35,7 @@ export class StarshipService {
   /**
    * create starship
    * @param id starship identifier
-   * @returns Observable of starship
+   * @returns starship observable
    */
   createStarship(starship: Starship): Observable<myStarship>{
     return this.http.post<myStarship>(`${ this.baseUrl }/starships/`, starship);
@@ -45,7 +45,7 @@ export class StarshipService {
    * update starship
    * @param starship starhip info
    * @param id starship identifier
-   * @returns Observable of starship
+   * @returns starship observable
    */
   updateStarship(starship: Starship, id: number): Observable<myStarship>{
     return this.http.put<myStarship>(`${ this.baseUrl }/starships/${id}/`, starship);
