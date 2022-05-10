@@ -3,11 +3,15 @@ import { Router } from '@angular/router';
 import { Movie } from '../../interfaces/starwars.interfaces';
 import { StateService } from '../../services/state.service';
 
+/**
+ * Description: 
+ *  - Show title movie, episode number, opening_crawl
+ *  - link to DetailMovieComponent
+ */
+
 @Component({
   selector: 'app-card-movie',
   templateUrl: './card-movie.component.html',
-  styles: [
-  ]
 })
 export class CardMovieComponent {
 
@@ -27,12 +31,22 @@ export class CardMovieComponent {
     edited: undefined,
     url: ''
   }
+  
+  /**
+   * @param stateService control state Movies
+   * @param router config routes
+   */
 
   constructor(
     private stateService: StateService,
     private router: Router
     ) { }
 
+  /**
+   * Description: 
+   *  - go to DetailMovieComponent 
+   *  - set current Movie
+   */  
   goToDetailMovie(): void {
     this.stateService.setCurrentMovie(this.movie);
     this.router.navigate(['/starwars/movie', this.movie.episode_id]);
