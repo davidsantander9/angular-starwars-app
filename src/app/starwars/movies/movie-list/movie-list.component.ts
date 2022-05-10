@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { StarwarsResponse, Movie } from '../../interfaces/starwars.interfaces';
 import { StarwarsService } from '../../services/starwars.service';
 
+/**
+ * Description: 
+ *  - Load list movie info from starwars api  
+ */
+
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
@@ -10,14 +15,24 @@ import { StarwarsService } from '../../services/starwars.service';
 })
 export class MovieListComponent implements OnInit {
 
+  /** movie:  list of movies */
   movies: Movie[] = [];
+  /** isLoading: change if data is loading */
   isLoading: boolean = true;
+  /** displays information if an error occurs  */
   errorText: string = "";
 
+  /**
+   * 
+   * @param starwarsService connect with stawars api
+   */
   constructor( 
     private starwarsService: StarwarsService,
-    private stateService: StarwarsService,
     ) { }
+
+  /**
+   * ngOnInit load info from starwars info
+   */  
 
   ngOnInit(): void {
     this.starwarsService.getMovies()
