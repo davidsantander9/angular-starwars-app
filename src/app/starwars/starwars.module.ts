@@ -13,6 +13,7 @@ import { DetailMovieComponent } from './movies/detail-movie/detail-movie.compone
 import { StarshipItemComponent } from './starship/starship-item/starship-item.component';
 import { StarshipListComponent } from './starship/starship-list/starship-list.component';
 import { DetailStarshipComponent } from './starship/detail-starship/detail-starship.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DetailStarshipComponent } from './starship/detail-starship/detail-stars
     StarshipItemComponent,
     StarshipListComponent,
     DetailStarshipComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

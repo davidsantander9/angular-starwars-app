@@ -133,6 +133,7 @@ export class DetailStarshipComponent implements OnInit {
         result => { 
           this.isLoading = false;
           this.errorText = "";
+          this.myStarship = result;
         },
         err => {
           this.isLoading = false;
@@ -146,6 +147,7 @@ export class DetailStarshipComponent implements OnInit {
           result => { 
             this.isLoading = false;
             this.errorText = "";
+            this.myStarship = result;
           },
           err => {
             this.isLoading = false;
@@ -153,11 +155,6 @@ export class DetailStarshipComponent implements OnInit {
           }
          );
     }
-    
-    this.starshipService.getStarshipByIdApi(this.id.toString()).subscribe( result => { 
-      if( result.length > 0) { this.myStarship = result[0] } 
-      this.isLoading = false;
-    } );
     this.form.reset();
   }
 

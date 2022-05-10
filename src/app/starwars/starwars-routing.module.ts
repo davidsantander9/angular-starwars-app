@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
 import { DetailMovieComponent } from './movies/detail-movie/detail-movie.component';
 import { DetailStarshipComponent } from './starship/detail-starship/detail-starship.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,9 @@ const routes: Routes = [
       { path: 'movies', component: MovieListComponent },
       { path: 'movie/:id', component: DetailMovieComponent},
       { path: 'starship/:id', component: DetailStarshipComponent},
+      { path: '404', component: NotFoundComponent},
       
-      { path: '**', redirectTo: 'home' },
+      { path: '**', redirectTo: '404' },
     ]
   }
 ];
