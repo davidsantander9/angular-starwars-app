@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+
+/**
+ * Description: 
+ *  - Show Movies page    
+ */
 
 @Component({
   selector: 'app-movies',
@@ -6,11 +12,4 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class MoviesComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class MoviesComponent  { }

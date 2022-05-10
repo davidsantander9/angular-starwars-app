@@ -20,7 +20,7 @@ export class DetailMovieComponent implements OnInit {
  
   /** movie:  infoMovie */
   movie!: Movie | undefined;
-  /** isLoading: change if data is loadingie */
+  /** isLoading: change if data is loading */
   isLoading: boolean = true;
 
   /**
@@ -38,7 +38,7 @@ export class DetailMovieComponent implements OnInit {
     ) { }
 
     /**
-     * -  set movieinfo if currentMovieState existe else load info from api
+     * ngOnInit set movieinfo if currentMovieState existe else load info from starwars info
      */
     ngOnInit(): void {
       if (this.stateService.getCurrentMovie()){
