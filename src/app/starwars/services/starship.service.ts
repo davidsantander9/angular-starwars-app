@@ -24,7 +24,7 @@ export class StarshipService {
   constructor(private http: HttpClient ) { }
 
   /**
-   * get and starhip
+   * get an starhip
    * @param id starship identifier
    * @returns Observable of starship list
    */
