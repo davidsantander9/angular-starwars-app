@@ -7,19 +7,29 @@ import { StarwarsService } from '../../services/starwars.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StateService } from '../../services/state.service';
 
+/**
+ * Description: 
+ *  - Show starship and starship info
+ *  - CRUD starship
+ */
 @Component({
   selector: 'app-detail-starship',
   templateUrl: './detail-starship.component.html',
   styleUrls: ['./detail-starship.component.css']
 })
 export class DetailStarshipComponent implements OnInit {
-
+  /** id: id from starship api  */
   id: number = 0;
+  /** id: id from starwars api  */
   idApi: number | undefined;
+  /** myStarship: starship info from api  */
   myStarship!: myStarship;
+  /** isLoading: change if data is loading */
   isLoading: boolean = true;
+  /** displays information if an error occurs  */
   errorText: string = "";
   
+  /** starship data */
   starship: Starship = {
     name: '',
     model: '',
@@ -41,6 +51,7 @@ export class DetailStarshipComponent implements OnInit {
     films: []
   };
 
+  /** starship form */
   form: FormGroup = this.fb.group({
     id_api: [],
     name: [ , [ Validators.required, Validators.minLength(3) ]   ],
@@ -60,14 +71,26 @@ export class DetailStarshipComponent implements OnInit {
     url: [ , [ Validators.required, Validators.minLength(10)] ],
   }) 
 
+  /**
+   * 
+   * @param starshipService connect with starship api
+   * @param activatedRoute provides access to information about a route 
+   * @param starwarsService connect with stawars api
+   * @param stateService control movies, starhips list state
+   * @param fb provides instances of a FormControl, FormGroup
+   */
   constructor(
     private starshipService: StarshipService,
     private activatedRoute: ActivatedRoute,
     private starwarsService: StarwarsService,
     private stateService: StateService,
-    private fb: FormBuilder
+    private fb: FormBuilder 
   ) { }
 
+  /**
+   * ngOnInit set movieinfo if currentStarship exist else load info from starship api info
+   *  - set information to the form
+   */
   ngOnInit(): void {
 
     if ( this.stateService.getCurrentStarship() ){
@@ -114,16 +137,23 @@ export class DetailStarshipComponent implements OnInit {
     
   }
 
+  /**
+   * Verify if form is valid
+   * @param field input field value
+   * @returns true if form is valid
+   */
   isFieldValid( field: string ) {
     return this.form.controls[field].errors 
             && this.form.controls[field].touched;
   }
 
+  /**
+   * Create or update an starship and set the result to myStarship
+   * @returns void
+   */
   save(){
     if ( this.form.invalid )  {
       this.form.markAllAsTouched();
-      console.log(this.form.validator)
-      console.log(this.form.errors)
       return;
     }
     this.isLoading = true;
@@ -158,6 +188,10 @@ export class DetailStarshipComponent implements OnInit {
     this.form.reset();
   }
 
+   /**
+   * delete an starship
+   * @returns void
+   */
   delete(){
     if (this.myStarship) {
       this.isLoading = true;
@@ -175,6 +209,10 @@ export class DetailStarshipComponent implements OnInit {
     }
   }
 
+  /**
+   * pass info to the form
+   * @returns void
+   */
   setData(){
     this.form.reset({
       id_api: this.myStarship.id_api,
