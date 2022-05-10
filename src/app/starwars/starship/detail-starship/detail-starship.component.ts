@@ -24,7 +24,7 @@ export class DetailStarshipComponent implements OnInit {
   idApi: number | undefined;
   /** myStarship: starship info from api  */
   myStarship!: myStarship;
-  /** isLoading: change if data is loading */
+  /** isLoading: change if data is loaded */
   isLoading: boolean = true;
   /** displays information if an error occurs  */
   errorText: string = "";
