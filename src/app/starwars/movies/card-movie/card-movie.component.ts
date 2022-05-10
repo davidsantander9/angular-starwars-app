@@ -33,8 +33,8 @@ export class CardMovieComponent {
   }
   
   /**
-   * @param stateService control state Movies
-   * @param router config routes
+   * @param stateService control movies, starhips list state
+   * @param router config application routes
    */
 
   constructor(
